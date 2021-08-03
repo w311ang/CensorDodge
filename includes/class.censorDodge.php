@@ -296,7 +296,7 @@ class censorDodge {
     public function openPage() {
         if (!empty($this->URL)) {
             $page = ""; $this->callAction("preRequest", array(&$page,&$this->URL,$this)); //Run preRequest function for plugins
-            if ($this->hotlinkExceptions!==false) { if (!($i=isset($_SESSION))) { session_start(); } $hl = substr(md5("cdHotlink"),0,20); if (@$_SESSION[$hl]!=true && !preg_match('~('.implode("|", $this->hotlinkExceptions).')~', $_SERVER["HTTP_REFERER"])) { throw new Exception("The use of hotlinking is strictly forbidden on this server!"); } else { $_SESSION[$hl] = true; } if (!$i) { session_destroy(); } else { session_write_close(); } }
+            //if ($this->hotlinkExceptions!==false) { if (!($i=isset($_SESSION))) { session_start(); } $hl = substr(md5("cdHotlink"),0,20); if (@$_SESSION[$hl]!=true && !preg_match('~('.implode("|", $this->hotlinkExceptions).')~', $_SERVER["HTTP_REFERER"])) { throw new Exception("The use of hotlinking is strictly forbidden on this server!"); } else { $_SESSION[$hl] = true; } if (!$i) { session_destroy(); } else { session_write_close(); } }
 
             if ($this->allowCookies) { $this->createCookieDIR(); } //If cookies are enabled create the directory
             $return = $this->curlRequest($this->URL, $_GET, $_POST); //Run the cURL function to get the page for parsing
